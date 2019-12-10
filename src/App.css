@@ -1,0 +1,92 @@
+.App {
+  text-align: center;
+  border:2px solid #aaa;
+  box-shadow:2px 3px #ccc;
+  width:35%;
+  min-width: 300px;
+  height: 99vh;
+}
+
+.start
+{
+  margin-top:5px;
+  background-color: #4CAF50;
+  border: 1px solid;
+  border-color:#1e7e34; 
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  width:95%;
+}
+
+.stop
+{
+  margin-top:5px;
+  background-color: #dc3545;
+  border: 1px solid;
+  border-color:#bd2130;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  width:95%;
+}
+
+.Buying
+{
+  display: inline-grid;
+  width:50%;
+  min-width: 87px;
+}
+
+.Selling
+{
+  display: inline-grid;
+  width:50%;
+  min-width: 87px;
+}
+
+.BuyingButton
+{
+  /*#343a40*/
+  margin-bottom:5px;
+  margin-left: 5px;
+  background-color: #343a40;
+  color: white;
+  border:none;
+  padding: 15px 15px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  width:90%;
+  min-width: 130px;
+}
+
+.SellingButton
+{
+  /*#343a40*/
+  margin-bottom:5px;
+  margin-left: 10px;
+  margin-right:5px;
+  background-color: #343a40;
+  color: white;
+  border:none;
+  padding: 15px 15px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  width:90%;
+  min-width: 130px;
+}
+
+ul
+{
+  text-align: left;
+}
