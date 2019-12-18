@@ -1,10 +1,17 @@
-.App {
+.Panel {
   text-align: center;
   border:2px solid #aaa;
   box-shadow:2px 3px #ccc;
   width:35%;
   min-width: 300px;
   height: 99vh;
+  display:inline-block;
+}
+
+.Visualization
+{
+  display:inline-block;
+  margin-left:20px;
 }
 
 .start
