@@ -15,8 +15,11 @@ let scen = edua.parse(spec);
 let sim = edua.newSim(scen);
 let info = edua.info(sim);
 let result = false;
-console.log(info);
-console.log(scen);
+let setIntervalId;
+//console.log(info);
+//console.log(scen);
+//console.log(edua);
+
 
 let array = [];
 
@@ -24,16 +27,17 @@ for(let i=0;i<scen[2].length;i++)
 {
   array[i] = scen[2][i][1]; 
 }
-console.log(info.workstations[0]);
+//console.log(info.workstations[0]);
 
 class App extends Component {
 
   state = {
     startButton: 'Start',
+    startButtonState: false,
     nameOfClass: 'start',
     buyButtons: array,
     sellButtons: ['Sell Product 1', 'Sell Product 2'],
-    sliderValue: 5,
+    sliderValue: 1,
     week:'...',
     day:'...',
     time:'...',
@@ -41,30 +45,57 @@ class App extends Component {
     purchasing: false,
     chartVisibility: false,
     identifier: "Chart",
-    productQuantity:''
+    zmienna:0
   }
+
+
+  gameTime = () => {
+      edua.tick;
+      console.log('aaa');
+  }
+
+  getInfo = () => {
+    console.log(info);
+    console.log(edua);
+    console.log(info.buffers);
+    this.setState(state => ({zmienna:5}))
+    console.log(this.state.zmienna);
+  }
+
 
 
   sliderValueHandler = (e) => {
-    this.setState({sliderValue: e.target.value});
+    this.setState({sliderValue: e.target.value}, () => this.gameTimeRun());
   }
 
-
+  gameTimeRun = () => {
+    if(this.state.startButtonState)
+    {
+      clearInterval(setIntervalId);
+      let bagno = Math.floor(1000/this.state.sliderValue);
+      console.log(bagno);
+      setIntervalId = setInterval(() => this.gameTime(), bagno);
+    }
+  }
 
   switchValueHandler = () => {
     //console.log(this.state.nameOfClass);
-    if(this.state.startButton === "Start")
+    if(!this.state.startButtonState)
     {
+      
       //console.log('Clicked');
   	  this.setState(state => ({
+        startButtonState: true,
         startButton: "Stop",
-        nameOfClass: "stop"
-      }));
+        nameOfClass: "stop",
+      }),() => this.gameTimeRun());
     }
     else //if (this.state.wartosc === "Stop")
     {
+      clearInterval(setIntervalId);
       //console.log('Clicked else');
       this.setState(state => ({
+        startButtonState: false,
         startButton: "Start",
         nameOfClass: "start"
       }));
@@ -78,13 +109,26 @@ class App extends Component {
 
   purchaseAcceptHandler = () => {
     this.setState({purchasing:false});
-    for(let i=0;i<this.state.productQuantity;i++)
+    let i=0;
+    do
     {
       console.log(this.state.productQuantity);
       [result, sim] = edua.execAction(sim, 1);
       info = edua.info(sim);
       this.setState({money: info.assets[0].value});
-    }
+      i++;
+    }while((i<Math.abs(this.state.productQuantity))&&(result===true))
+
+    [result, sim] = edua.assignResource(sim, 1, 1, 1);
+    console.log(info);
+    /*for(let i=0;i<this.state.productQuantity;i++)
+    {
+      console.log(this.state.productQuantity);
+      [result, sim] = edua.execAction(sim, 1);
+      info = edua.info(sim);
+      this.setState({money: info.assets[0].value});
+    }*/
+    
     console.log(info.assets[0].value);
   }
 
@@ -163,6 +207,9 @@ class App extends Component {
           <Modal identifier={this.state.identifier} show={this.state.chartVisibility} modalClosed={this.hideChart}>
             <Chart/>
           </Modal>
+
+          <Button2 click={this.gameTime}>Time</Button2>
+          <Button2 click={this.getInfo}>Info</Button2>
 
         </div>
 

@@ -7,12 +7,12 @@ const wst = (props) => {
         <div>
             {props.info.workstations.map(workstation =>
             <div className="workstation" key={workstation.id}>    
-                <h3> {workstation.name} </h3>
-                <h4>Id: {workstation.id}</h4>
-                <p>Resources: {workstation.resources}</p>
-                <p>Status: {workstation.status} </p>
-                <p>Done product: {props.doneProduct}</p>
-                <p>Avaiable actions: </p>
+                <h4> {workstation.name} </h4>
+                <div>Id: {workstation.id}</div>
+                <div>Resources: {workstation.resources}</div>
+                <div>Status: {workstation.status} </div>
+                <div>Done product: {props.doneProduct}</div>
+                <div>Avaiable actions: </div>
             </div>
             )}
         </div>
