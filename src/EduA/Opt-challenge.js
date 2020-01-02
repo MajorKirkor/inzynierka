@@ -21,6 +21,7 @@ Wersja: 1
 3,      buy b,          1
 4,      sell d,         2
 5,      sell e,         2
+6,		  expenses,		    1
 
 -- ActionsReqsResults   action_id, req_or_res, type, ref_id, qty
 1,      req,    asset,          1,10
@@ -36,6 +37,7 @@ Wersja: 1
 5,      req,    product,        9,1
 5,      res,    product,        10,1
 5,      res,    asset,          1,60
+6,		  req,	  asset,			    1,2400
 
 -- Operations   id, name
 1,      make a

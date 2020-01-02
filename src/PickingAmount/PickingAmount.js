@@ -6,11 +6,16 @@ const pickingAmount = (props) => {
         <div>
             <h3>How much product do you want to buy?</h3>
             <input type="number" min="0" placeholder="Quantity" className="Quantity" 
-            onChange={props.setPurchase} 
-            onInput={props.setPurchase}/>
+                onChange={props.setPurchase} 
+                onInput={props.setPurchase}/>
             <div>
-                <button type="submit" className="AcceptAmount" onClick={props.acceptPurchase}>BUY</button>
-                <button type="reset" className="DeclineAmount" onClick={props.modalClosed}>CANCEL</button>
+                <button 
+                    type="submit" 
+                    className="AcceptAmount" 
+                    onClick={() => props.acceptPurchase(props.workstation_id)}>
+                
+                Buy</button>
+                <button type="reset" className="DeclineAmount" onClick={props.modalClosed}>Cancel</button>
             </div>
         </div>
     );

@@ -1,9 +1,16 @@
 .workstation
 {
-    width:200px;
-    height:200px;
-    display: inline-block;
+    width:150px;
+    height:150px;
+    display: inline-grid;
     border:2px solid #444;
     padding:20px;
     text-align: center;
+    margin:20px;
+}
+
+.Modal
+{
+    text-align: center;
+    width:700px;
 }

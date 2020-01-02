@@ -2,8 +2,7 @@
   text-align: center;
   border:2px solid #aaa;
   box-shadow:2px 3px #ccc;
-  width:35%;
-  min-width: 300px;
+  width:400px;
   height: 99vh;
   display:inline-block;
 }
@@ -13,6 +12,9 @@
   display:inline-block;
   margin-left:20px;
   width:60%;
+  position:fixed;
+  top:0;
+  left:400px;
 }
 
 .start
