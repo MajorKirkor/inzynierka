@@ -1,0 +1,34 @@
+table {
+    font-family: arial, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+  }
+  
+  td {
+    border: 1px solid #dddddd;
+    text-align: left;
+    padding: 8px;
+  }
+  
+  td > table > tbody > tr > td {
+    display:block;
+    margin:5px;
+  }
+
+.hide
+{
+  /*#343a40*/
+  margin-top:10px;
+  margin-bottom:5px;
+  margin-left: 5px;
+  background-color: #343a40;
+  color: white;
+  border:none;
+  padding: 15px 15px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  width:90%;
+  min-width: 130px;
+}

@@ -23,3 +23,9 @@
         left: calc(50% - 250px);
     }
 }
+
+#raport
+{
+    top:20%;
+    width:500px;
+}

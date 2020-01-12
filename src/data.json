@@ -1,0 +1,67 @@
+[
+
+  {
+    "ID": "1",
+    "name": "Station A",
+    "posX": "1",
+    "posY": "1",
+    "output": "[5]",
+    "color": "gray",
+    "isActive": "true",
+    "mode": "I",
+    "resourcesPresent": "true",
+    "timeLeft": ""
+  },
+  {
+    "ID": "2",
+    "name": "Station B",
+    "posX": "1",
+    "posY": "4",
+    "output": "[3]",
+    "color": "gray",
+    "progressBarPercent": "",
+    "isActive": "true",
+    "mode": "I",
+    "resourcesPresent": "true",
+    "timeLeft": ""
+  },
+  {
+    "ID": "3",
+    "name": "Station C",
+    "posX": "3",
+    "posY": "4",
+    "output": "[4]",
+    "color": "gray",
+    "progressBarPercent": "50",
+    "isActive": "false",
+    "mode": "I",
+    "resourcesPresent": "true",
+    "timeLeft": ""
+  },
+  {
+    "ID": "4",
+    "name": "Station D",
+    "posX": "5",
+    "posY": "4",
+    "output": "[5]",
+    "color": "gray",
+    "progressBarPercent": "30",
+    "isActive": "true",
+    "mode": "I",
+    "resourcesPresent": "true",
+    "timeLeft": ""
+  },
+
+  {
+    "ID": "5",
+    "name": "Station E",
+    "posX": "6",
+    "posY": "2",
+    "color": "gray",
+    "progressBarPercent": "7",
+    "isActive": "true",
+    "mode": "I",
+    "resourcesPresent": "true",
+    "timeLeft": ""
+  }
+ ]

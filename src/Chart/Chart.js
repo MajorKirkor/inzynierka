@@ -4,7 +4,7 @@ let CanvasJSChart = CanvasJSReact.CanvasJSChart;
 
 const chart = (props) => {
 
-    const options = {
+    let options = {
         animationEnabled: true,
         theme: "light2",
         title:{
@@ -29,6 +29,7 @@ const chart = (props) => {
                 { label: "Machine 1", y: 20 }
             ]
         }
+
         ]
     }
 

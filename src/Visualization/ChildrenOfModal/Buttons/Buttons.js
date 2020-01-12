@@ -12,7 +12,7 @@ const buttonsList = (props) => {
                 key={button.id} 
                 className={props.klasa}
                 id={button.name}
-                onClick={() => props.selectAction(button.id,props.workstation_id,button.connection_id)}>
+                onClick={() => props.selectAction(button.id,props.workstation_id)}>
 
                 {button.name}
 

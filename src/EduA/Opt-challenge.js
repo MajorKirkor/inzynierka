@@ -59,14 +59,14 @@ Wersja: 1
 5,      req,product,7,1
 5,      res,product,9,1
 
--- OperationsSet        id, name
+-- Modes        id, name
 1,      mode a
 2,      mode b
 3,      mode c
 4,      mode d
 5,      mode e
 
--- OperationsSetOperations      set_id, operation_id, operation_time
+-- ModeOperations      set_id, operation_id, operation_time
 1,      1,      28
 2,      2,      10
 3,      3,      6
@@ -100,9 +100,6 @@ Wersja: 1
 1,      red,    1,0
 2,      green,  1,0
 3,      yellow, 1,0
-
--- Events       id, name, type, start_at, period
-1,      week,   cyclic, 0,2400
 
 -- Buffers      id, name
 1,      main input
@@ -147,7 +144,12 @@ Wersja: 1
 -- Assets       id, name, initial, value
 1,      money,  1500
 
-
+-- Visualization       entity_type, entity_id, x, y
+wst, 1, 1, 1
+wst, 2, 1, 4
+wst, 3, 3, 4
+wst, 4, 5, 4
+wst, 5, 6, 2
 
 
 Ciekawostki:
