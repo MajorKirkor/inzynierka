@@ -11,9 +11,9 @@ class Wst_button {
 
 const btt0 = new Wst_button(0,'Buy product',1,null,null,0);
 const btt1 = new Wst_button(1,'Sell product',2,2,0,null);
-const btt2 = new Wst_button(2,'Setup',null,null);
-const btt3 = new Wst_button(3,'Transfer A to E',null,7);
-const btt4 = new Wst_button(4,'Cancel',null,null);
+const btt2 = new Wst_button(2,'Setup',null,null,null,null);
+const btt3 = new Wst_button(3,'Transfer A to E',null,7,null,null);
+const btt4 = new Wst_button(4,'Cancel',null,null,null,null);
 
 const btt5 = new Wst_button(0,'Buy product',3,null,null,0);
 const btt6 = new Wst_button(2,'Setup',null,null);

@@ -3,47 +3,30 @@ import './App.css';
 import Button2 from './Buttons/Button';
 import Modal from './Modal/Modal';
 import Chart from './Chart/Chart';
-import Spec from './EduA/Opt-challenge.js';
+//import Spec from './EduA/Opt-challenge.js'';
 import Wst from './Visualization/Visualization';
 import Wst_buttons from './Buttons/ButtonSpec';
 import Raport from './Raport/Raport';
 
 
-const test = () => {
-  console.log('bbbb');
-}
-
 let edua = window.edua;
 
-let spec = Spec.split('\n');
+let spec = window.Spec.split('\n');
 let scen = edua.parse(spec);
 let sim = edua.newSim(scen);
 let info = edua.info(sim);
 let result = false;
 let setIntervalId;
-//console.log(edua.allActions(sim));
+
 let dt = new Date(2019, 6, 0, 0, 0);
+console.log(info);
 
-let handlers = [
-  ['workstation', 1, () => {
-    alert("Workstation callback 1")
-  }],
-  ['workstation', 2, () => {
-    alert("Workstation callback 2")
-  }],
-  ['workstation', 3, () => {
-    alert("Workstation callback 3")
-  }],
-  ['workstation', 4, () => {
-    alert("Workstation callback 4")
-  }],
-  ['workstation', 5, () => {
-    alert("Workstation callback 5")
-  }]
-]
-window.draw("container", handlers, info, edua.visInfo(sim));
 
-console.log(edua.visInfo(sim));
+//console.log( document.getElementById('container'));
+
+//window.draw("container", handlers, info, edua.visInfo(sim));
+
+
 
 let cashEndOfWeek=0;
 let boughtOnPA=0;
@@ -79,6 +62,19 @@ class App extends Component {
     readyProduct:0,
   }
 
+  handlers = [
+    ['workstation', 1, () => this.menuShowingHandler(1)],
+    ['workstation', 2, () => this.menuShowingHandler(2)],
+    ['workstation', 3, () => this.menuShowingHandler(3)],
+    ['workstation', 4, () => this.menuShowingHandler(4)],
+    ['workstation', 5, () => this.menuShowingHandler(5)]
+  ];
+
+  componentDidMount()
+  {
+    window.draw("container", this.handlers, info, edua.visInfo(sim));
+    //console.log(edua.visInfo(sim));
+  }
 
   dayOfWeek = (numberOfDay) => {
     switch(numberOfDay)
@@ -118,6 +114,8 @@ class App extends Component {
       this.startOperation(3);
       this.startOperation(4);
       this.startOperation(5);
+      window.refreshSim("container", "container-parent");
+      window.draw("container", this.handlers, info, edua.visInfo(sim));
       dt.setMinutes(dt.getMinutes()+1);
       if(dt.getHours()<8)//End of day
         this.setState({time:dt.getHours() +':'+ (dt.getMinutes() < 10 ? '0' + dt.getMinutes() : dt.getMinutes())});
@@ -155,7 +153,7 @@ class App extends Component {
         //How to zero all variables
         dt = new Date(2019, 6, 0, 0, 0);
         edua = window.edua;
-        spec = Spec.split('\n');
+        spec = window.Spec.split('\n');
         scen = edua.parse(spec);
         sim = edua.newSim(scen);
         info = edua.info(sim);
@@ -180,14 +178,14 @@ class App extends Component {
   }
 
   getInfo = () => {
-
-    console.log(info);  
+    console.log(info); 
+    console.log(edua.visInfo(sim));  
   }
   
   getingOtherValues = () => {
     //this.state.productIn.map(x=>console.log('aaaa'));
     //console.log(this.state.productIn);
-    this.raport();
+    console.log(edua);
   }
 
 
@@ -199,7 +197,7 @@ class App extends Component {
     if(this.state.startButtonState)
     {
       clearInterval(setIntervalId);
-      setIntervalId = setInterval(() => this.gameTime(), Math.floor(300/this.state.sliderValue));
+      setIntervalId = setInterval(() => this.gameTime(), Math.floor(1000/this.state.sliderValue));
     }
   }
 
@@ -278,8 +276,8 @@ class App extends Component {
         }
       }
       [result, sim] = edua.assignResource(sim, wst_id, res_id, 1);
-      //info = edua.info(sim); 
-      console.log(result);
+      info = edua.info(sim); 
+      //console.log(result);
       [result, sim] = edua.startMode(sim, wst_id, wst_id);
       //console.log(result);
       info = edua.info(sim);
@@ -289,6 +287,7 @@ class App extends Component {
   purchaseAcceptHandler = (wst_id) => {
     let action_id = Wst_buttons[wst_id-1][0].action_id;
     let product_id = edua.workstationInfo(sim,wst_id).modes[0].operations[0].requirements[0].id;
+    //console.log(product_id);
     //console.log(action_id);
     this.setState({purchasing:false});
     let i=0;
@@ -377,7 +376,7 @@ class App extends Component {
     }
     let product_id = edua.workstationInfo(sim,wst_id).modes[0].operations[0].results[0].id;
 
-    let products = info.buffers[wst_id+1].products.filter(product => product.product_id === product_id);
+    let products = info.buffers[wst_id-1].products.filter(product => product.product_id === product_id);
     let quantity = products.map(x => x.qty);
     
     //Wst_buttons[wst_id-1][0].sold>sold;
@@ -439,15 +438,15 @@ class App extends Component {
       }
     }
     let product_id = edua.workstationInfo(sim,wst_id).modes[0].operations[0].results[0].id;
-    let products = info.buffers[wst_id+1].products.filter(product => product.product_id === product_id);
+    let products = info.buffers[wst_id-1].products.filter(product => product.product_id === product_id);
     let quantity = products.map(x => x.qty);
-    console.log(quantity[0]);
+    //console.log(quantity[0]);
     if(quantity[0]!==undefined)
     {
       if(action===1)
       {
         [result, sim] = edua.transfer(sim, connection_id, product_id, quantity[0]);
-        console.log(result);
+        //console.log(result);
         info = edua.info(sim);
       }
       else if(action===0)
@@ -513,7 +512,7 @@ class App extends Component {
     if(info.workstations[wst_id-1].status==="idle")
     {
       [result, sim] = edua.startOperation(sim, wst_id, wst_id);
-      console.log(result,wst_id); 
+      //console.log(result,wst_id); 
     }
     info = edua.info(sim);
   }
@@ -540,13 +539,13 @@ class App extends Component {
     this.setState({rawMaterial2:''});
     this.setState({readyProduct:0});
     let product_id_req = edua.workstationInfo(sim,wst_id).modes[0].operations[0].requirements[0].id;
-    let productIn1 = info.buffers[wst_id+1].products.filter(product => product.product_id === product_id_req);
+    let productIn1 = info.buffers[wst_id-1].products.filter(product => product.product_id === product_id_req);
     let product_id_res = edua.workstationInfo(sim,wst_id).modes[0].operations[0].results[0].id;
-    let productOut1 = info.buffers[wst_id+1].products.filter(product => product.product_id === product_id_res);
+    let productOut1 = info.buffers[wst_id-1].products.filter(product => product.product_id === product_id_res);
     if(wst_id===5)
     {
       let product_id_req2 = edua.workstationInfo(sim,wst_id).modes[0].operations[0].requirements[1].id;
-      let productIn2 = info.buffers[wst_id+1].products.filter(product => product.product_id === product_id_req2);
+      let productIn2 = info.buffers[wst_id-1].products.filter(product => product.product_id === product_id_req2);
       productIn2.map(product => this.setState({rawMaterial2:product.qty}));
     }
 
@@ -633,7 +632,7 @@ class App extends Component {
               <li>Money: {this.state.money}</li>
             </ul>
           </div>
-
+        {/*}
           <div className="GanttChart">
             <Button2 nameOfClass="BuyingButton" click={this.showChart}>Gantt chart</Button2>
           </div>
@@ -643,11 +642,7 @@ class App extends Component {
 
 
           <Button2 click={this.getInfo}>Info</Button2>
-          <Button2 click={this.getingOtherValues}>Raport</Button2>
-          {/*
-          
-          <Button2 click={() => this.setup(2,2)}>Resources Assign</Button2> 
-          <Button2 click={() => this.startOperation(1)}>StartOperation</Button2>
+          <Button2 click={this.getingOtherValues}>Edua</Button2>
           */}
         </div>
 
@@ -655,7 +650,6 @@ class App extends Component {
 
         <div className="Visualization">
 
-          
           <Wst 
           info={info} 
           showMenu={this.state.showMenu} 

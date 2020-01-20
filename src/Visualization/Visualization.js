@@ -4,11 +4,13 @@ import Modal from '../Modal/Modal';
 import ChildrenOfModal from './ChildrenOfModal/ChildrenOfModal';
 import Amount from './Amount/Amount';
 
+
+
 const wst = (props) => {
     return(
         
-        <div>
-            
+        <div id="container-parent">
+            {/*
             {props.info.workstations.map(workstation =>
             <div onClick={() => props.showMenuHandler(workstation.id)} className="workstation" key={workstation.id}>    
                 <h4> {workstation.name} </h4>
@@ -19,10 +21,11 @@ const wst = (props) => {
                     
                         <div key={product.product_id}>{product.qty}</div>
                         
-                    )}</div>*/}
+                    )}</div>
                 </div>
             </div>
-                    )}
+                    )}*/}
+
             <div id="container"></div>
             <Modal show={props.showMenu} modalClosed={props.hideMenu} className="menu"> {/*Modal for main menu*/}
                 <ChildrenOfModal 
